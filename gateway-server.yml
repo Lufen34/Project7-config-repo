@@ -1,0 +1,19 @@
+server:
+    port: 8086
+---
+spring:
+    cloud:
+        gateway:
+            routes:
+                - id: book-service
+                  uri: http://localhost:8082/
+                  predicate:
+                        - Path=/book-service/**
+                - id: config-server
+                  uri: http://localhost:9083/
+                  predicate:
+                        - Path=/config-server/**
+                - id: eureka-server
+                  uri: http://localhost:9084/
+                  predicate:
+                        - Path=/eureka-server/**
